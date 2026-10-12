@@ -1,0 +1,13 @@
+[DEFAULT]
+# Ban hosts for 1 hour:
+bantime = 3600
+
+# A host is banned if it has generated "maxretry" during the last "findtime" seconds:
+findtime = 600
+maxretry = 3
+
+[sshd]
+enabled = true
+port = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
