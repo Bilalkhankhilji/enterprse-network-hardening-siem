@@ -1,34 +1,36 @@
-# Enterprise Network Hardening & SIEM Log Monitoring Lab
+# Enterprise Network Hardening & SIEM Log Analysis 🛡️
 
-## Overview
-This repository documents a simulated enterprise network security lab environment created to practice server hardening, firewall implementation, and threat detection using Ubuntu Server and log analysis tools.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Platform: Linux](https://img.shields.io/badge/Platform-Ubuntu%20%7C%20Debian%20%7C%20RHEL-orange.svg)]()
+[![Security Level: Hardened](https://img.shields.io/badge/Security-Hardened%20Node-green.svg)]()
 
-## Architecture & Environment
-* **Host/Management:** VirtualBox / VMware virtual machine environments.
-* **OS:** Ubuntu Server (Latest LTS).
-* **Security Controls:** UFW (Uncomplicated Firewall), Fail2ban, SSH Key-Based Authentication, and System Log Auditing.
+An enterprise-ready Linux server hardening playbook and automated security event parsing framework. This repository provides automated deployment scripts for firewall rules, intrusion prevention rulesets, and structured log parsing procedures for SIEM environments.
 
 ---
 
-## Step-by-Step Lab Implementation
+## 📋 Overview & Features
 
-### 1. Initial Server Hardening
-* Disabled root login over SSH to prevent direct administrative brute-force attempts.
-* Enforced SSH key-based authentication and disabled password authentication.
-* Configured non-standard ports where applicable.
-
-### 2. UFW Firewall Configuration
-Implemented strict default ingress/egress filtering rules using `firewall-setup.sh`:
-* Denied all incoming traffic by default.
-* Allowed only necessary service ports (e.g., SSH on custom port, HTTP/HTTPS).
-
-### 3. Fail2Ban Brute-Force Mitigation
-* Installed and configured `fail2ban` to monitor `/var/log/auth.log`.
-* Configured jail rules to automatically ban IP addresses exhibiting multiple failed login attempts within a specific time window.
+- 🔒 **Automated Firewall Provisioning:** Pre-configured Uncomplicated Firewall (UFW) rules enforcing strict ingress/egress policies and default-deny stances.
+- 🚫 **Intrusion Defense:** Fail2ban jail configurations targeting SSH brute-force attacks, HTTP rate-limiting, and port probes.
+- 📊 **SIEM Log Parsing:** Bash and Python scripts to extract, structure, and sanitize authentication logs (`/var/log/auth.log` / `journalctl`) for ingestion into SIEM tools.
+- ⚡ **SSH Security Baseline:** Automated SSH daemon configuration enforcement (root login disabled, key-based authentication enforced, non-standard port binding).
 
 ---
 
-## Artifacts Included in this Repo
-* `firewall-setup.sh`: Automated Bash script for configuring UFW rules.
-* `fail2ban-config.local`: Sanitized configuration file for SSH monitoring.
-* `log-analysis.md`: Sample logs showing brute-force detection and IP blocking analysis.
+## 🚀 Quick Start & Installation
+
+### Prerequisites
+- Operating System: Ubuntu Server 20.04/22.04 LTS or RHEL 8/9
+- Privileges: `sudo` / Root access
+
+### Deployment Steps
+```bash
+# 1. Clone the repository
+git clone [https://github.com/Bilalkhankhilji/enterprse-network-hardening-siem.git](https://github.com/Bilalkhankhilji/enterprse-network-hardening-siem.git)
+cd enterprse-network-hardening-siem
+
+# 2. Make hardening script executable
+chmod +x harden_server.sh log_parser.sh
+
+# 3. Run the automated baseline hardening script
+sudo ./harden_server.sh
