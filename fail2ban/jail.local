@@ -1,0 +1,37 @@
+# ==============================================================================
+# Fail2ban Local Configuration File
+# Project: Enterprise Network Hardening & SIEM
+# Author: Muhammad Bilal | Assistant Network Administrator
+# ==============================================================================
+
+[DEFAULT]
+# "bantime" is the number of seconds that a host is banned.
+bantime = 1h
+
+# A host is banned if it has generated "maxretry" during the last "findtime" seconds.
+findtime = 10m
+maxretry = 5
+
+# Destination email address for notification cops
+destemail = root@localhost
+sender = root@localhost
+
+# ==============================================================================
+# SSH Jail Configuration (Protects against brute-force and dictionary attacks)
+# ==============================================================================
+[sshd]
+enabled = true
+port = ssh
+logpath = %(sshd_log)s
+backend = %(sshd_backend)s
+maxretry = 3
+bantime = 2h
+
+# ==============================================================================
+# HTTP / Nginx Protection Jail (Optional web server protection)
+# ==============================================================================
+[nginx-http-auth]
+enabled = true
+port = http,https
+logpath = %(nginx_error_log)s
+maxretry = 5
